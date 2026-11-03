@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+Thumbs.db
+.DS_Store
+# local shortcut with this PC's paths in it
+Afterglow.lnk

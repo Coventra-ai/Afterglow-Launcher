@@ -1,0 +1,55 @@
+{
+  "name": "afterglow",
+  "version": "1.0.0",
+  "description": "Afterglow: one library for Steam, Epic, GOG, Rockstar and more",
+  "author": "Coventra AI",
+  "license": "MIT",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "scan": "node src/scanners.js",
+    "icons": "electron tools/make-icons.js",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.afterglow.launcher",
+    "productName": "Afterglow",
+    "copyright": "Copyright © 2026 Coventra AI",
+    "directories": { "output": "dist" },
+    "files": ["src/**/*", "assets/**/*", "package.json"],
+    "extraFiles": ["README.md", "LICENSE"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "assets/icon-blue.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "include": "build/installer.nsh",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Afterglow",
+      "runAfterFinish": true,
+      "installerIcon": "assets/icon-blue.ico",
+      "uninstallerIcon": "assets/icon-blue.ico",
+      "installerHeaderIcon": "assets/icon-blue.ico",
+      "artifactName": "Afterglow-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "assets/icon-blue-512.png",
+      "category": "Game",
+      "maintainer": "Coventra AI",
+      "synopsis": "One library for all your game launchers",
+      "artifactName": "Afterglow-${version}.${ext}"
+    }
+  }
+}
